@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const lateArrivalSchema = new mongoose.Schema({
     date: {
-        type: Number,
+        type: String,
         required: true
     },
     period: {
@@ -21,6 +21,28 @@ const lateArrivalSchema = new mongoose.Schema({
     //     type: BSON,
     //     required: true
     // },
+});
+
+const achievementsSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    conductedBy: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String
+    },
+    date: {
+        type: String,
+        required: true
+    }
+    // certificate: {
+    //     type: String,
+    //     required: true
+    // }
 });
 
 const studentSchema = new mongoose.Schema({
@@ -45,7 +67,8 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    lateArrivals: [lateArrivalSchema]
+    lateArrivals: [lateArrivalSchema],
+    achievements: [achievementsSchema]
 });
 
 

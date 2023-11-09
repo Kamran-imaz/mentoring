@@ -71,12 +71,12 @@ router.post("/login", async (req, res) => {
         }
     })
     
-router.post("/getstudentdetails", fetchStudent, async (req, res) => {
+router.post("/getStudentDetails", fetchStudent, async (req, res) => {
         let success = false
         try {
-            let id = req.student.id
-            const student = await StudentModel.Student.findById(id).select("-password")
-            success = true
+            let id = req.student.id;
+            const student = await StudentModel.Student.findById(id).select("-password -__v -_id");
+            success = true;
             return res.status(200).json({ success, student })
         }
         catch (err) {
