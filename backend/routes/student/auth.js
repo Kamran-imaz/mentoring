@@ -76,6 +76,9 @@ router.post("/getStudentDetails", fetchStudent, async (req, res) => {
         try {
             let id = req.student.id;
             const student = await StudentModel.Student.findById(id).select("-password -__v -_id");
+            if (student == null) {
+                return res.status(400).json({ success, message: "Student Not Found" })
+            }
             success = true;
             return res.status(200).json({ success, student })
         }
