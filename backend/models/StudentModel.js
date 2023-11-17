@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const lateArrivalSchema = new mongoose.Schema({
     date: {
-        type: String,
+        type: Number,
         required: true
     },
     period: {
