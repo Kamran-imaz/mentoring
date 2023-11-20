@@ -23,6 +23,28 @@ const lateArrivalSchema = new mongoose.Schema({
     // },
 });
 
+const achievementsSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    conductedBy: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String
+    },
+    date: {
+        type: String,
+        required: true
+    }
+    // certificate: {
+    //     type: String,
+    //     required: true
+    // }
+});
+
 const studentSchema = new mongoose.Schema({
     rollNo: {
         type: Number,
@@ -46,10 +68,10 @@ const studentSchema = new mongoose.Schema({
         required: true
     },
     lateArrivals: [lateArrivalSchema],
+    achievements: [achievementsSchema],
     marks:[],
     undertakingForm:[]
 });
-
 
 const StudentModel = mongoose.model('student', studentSchema);
 
