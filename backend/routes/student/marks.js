@@ -18,11 +18,13 @@ router.post('/',fetchStudent,async(req,res)=>{
         })
         checkStudent.save()
         res.json({
+            success:true,
             message:"successfully Updated"
         })
     }
     else{
         res.json({
+            success:false,
             message:"user does not exists"
         })
     }

@@ -13,6 +13,7 @@ app.use("/api/student/auth", require("./routes/student/auth"))
 app.use("/api/student/activities", require("./routes/student/activities"))
 app.use('/api/student/undertakingForm',require('./routes/student/undertakingForm'))
 app.use('/api/student/marks',require('./routes/student/marks'))
+app.use('/api/student/concerns',require('./routes/student/concerns'))
 
 app.listen(port, () => {
     console.log(`Connected Server http://localhost:${port}`);

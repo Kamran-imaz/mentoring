@@ -70,7 +70,8 @@ const studentSchema = new mongoose.Schema({
     lateArrivals: [lateArrivalSchema],
     achievements: [achievementsSchema],
     marks:[],
-    undertakingForm:[]
+    undertakingForm:[],
+    addressingConcerns:[]
 });
 
 const StudentModel = mongoose.model('student', studentSchema);
