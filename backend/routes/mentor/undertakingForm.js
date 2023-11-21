@@ -1,28 +1,28 @@
 const router=require('express').Router()
-const studentModel=require('../../models/StudentModel')
 const fetchMentor=require('../../middlewares/fetchMentor')
+const studentModel=require('../../models/StudentModel')
 router.get('/',fetchMentor,async(req,res)=>{
     try{
-        const fetchStudent=await studentModel.Student.find({},'name rollNo -_id')
-        if(fetchStudent){
+        const {rollNo}=req.body
+        const student=await studentModel.Student.find({rollNo},'undertakingForm -_id')
+        if(student){
             res.status(200).json({
                 success:true,
-                message:fetchStudent
+                message:student
             })
         }
         else{
             res.status(500).json({
                 success:false,
-                message:"no user found"
+                message:"no user exists with that rollNo!!!"
             })
         }
     }
     catch(err){
         res.status(500).json({
             success:false,
-            message:`un-identified error!!! ${err}`
+            message:`error is: ${err}`
         })
-        console.log(err)
     }
 })
 

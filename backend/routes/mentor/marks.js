@@ -1,28 +1,33 @@
 const router=require('express').Router()
-const studentModel=require('../../models/StudentModel')
 const fetchMentor=require('../../middlewares/fetchMentor')
+const studentModel=require('../../models/StudentModel')
+
+//to fetch the detail marks of a particular student
+
 router.get('/',fetchMentor,async(req,res)=>{
     try{
-        const fetchStudent=await studentModel.Student.find({},'name rollNo -_id')
-        if(fetchStudent){
+        const {rollNo}=req.body
+        const student=await studentModel.Student.find({rollNo},'marks -_id')
+        if(student)
+        {
+            console.log(student)
             res.status(200).json({
                 success:true,
-                message:fetchStudent
+                message:student
             })
         }
         else{
             res.status(500).json({
                 success:false,
-                message:"no user found"
+                message:"no user found!!!"
             })
         }
     }
     catch(err){
         res.status(500).json({
             success:false,
-            message:`un-identified error!!! ${err}`
+            message:`an error occurred ${err}`
         })
-        console.log(err)
     }
 })
 

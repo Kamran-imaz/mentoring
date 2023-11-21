@@ -19,8 +19,11 @@ app.use('/api/student/concerns',require('./routes/student/concerns'));
 
 // Mentor Routes
 app.use("/api/mentor/auth", require("./routes/mentor/auth"));
-// app.use("/api/mentor/activities", require("./routes/mentor/activities"));
+app.use("/api/mentor/activities", require("./routes/mentor/activities"));
 app.use('/api/mentor/fetchStudent',require('./routes/mentor/fetchStudents'))
+app.use('/api/mentor/marks',require('./routes/mentor/marks'))
+app.use('/api/mentor/undertakingForm',require('./routes/mentor/undertakingForm'))
+app.use('/api/mentor/addressingConcerns',require('./routes/mentor/addressingConcern'))
 
 app.listen(port, () => {
     console.log(`Connected Server http://localhost:${port}`);
