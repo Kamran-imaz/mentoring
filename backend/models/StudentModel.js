@@ -74,7 +74,7 @@ const studentSchema = new mongoose.Schema({
     addressingConcerns:[]
 });
 
-const StudentModel = mongoose.model('student', studentSchema);
+const StudentModel = mongoose.model("student", studentSchema);
 
 module.exports = {
     Student: StudentModel
