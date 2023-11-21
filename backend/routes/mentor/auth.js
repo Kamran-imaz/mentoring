@@ -87,4 +87,24 @@ router.get("/getMentorDetails", fetchMentor, async (req, res) => {
         }
     })
 
+router.put("/updateMentorDetails", fetchMentor, async (req, res) => {
+        let success = false;
+        try {
+            let id = req.mentor.id;
+            const mentor = await MentorModel.findById(id);
+            if (mentor == null) {
+                return res.status(400).json({ success, message: "Mentor Not Found" })
+            }
+            // mentor.name = req.body.name;
+            // mentor.email = req.body.email;
+            // update the code to edit mentor details
+            await mentor.save();
+            success = true;
+            return res.status(200).json({ success, mentor });
+        }
+        catch (err) {
+            return res.status(500).json({ success, message: err.message });
+        }
+    })
+
 module.exports = router

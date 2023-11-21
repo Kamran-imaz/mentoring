@@ -6,11 +6,11 @@ const fetchStudent = (req, res, next) => {
     let success = false
     jwt.verify(token, JWT_Secret, (err, data) => {
         if (data) {
-            req.student = data.studentID
+            req.student = data.studentID;
             next();
         }
         else {
-            return res.status(500).json({ success, message: "Invalid Token - Cannot Fetch User Details" })
+            return res.status(500).json({ success, message: "Invalid Token - Cannot Fetch Student Details" })
         }
     })
 }
