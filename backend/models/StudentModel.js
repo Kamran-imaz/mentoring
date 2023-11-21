@@ -16,7 +16,12 @@ const lateArrivalSchema = new mongoose.Schema({
     reason: {
         type: String,
         required: true
-    }
+    },
+    status: {
+        type: String,
+        default: "pending",
+        required: true
+    },
     // file: {
     //     type: BSON,
     //     required: true
@@ -38,7 +43,12 @@ const achievementsSchema = new mongoose.Schema({
     date: {
         type: String,
         required: true
-    }
+    },
+    status: {
+        type: String,
+        default: "pending",
+        required: true
+    },
     // certificate: {
     //     type: String,
     //     required: true
