@@ -1,7 +1,6 @@
 const router=require('express').Router()
 const fetchMentor=require('../../middlewares/fetchMentor')
 const studentModel=require('../../models/StudentModel')
-
 //to fetch the detail marks of a particular student
 
 router.get('/',fetchMentor,async(req,res)=>{

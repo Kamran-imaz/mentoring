@@ -1,6 +1,6 @@
 const router=require('express').Router()
 const fetchMentor=require('../../middlewares/fetchMentor')
-const studentModel=require('../../models/StudentModel')
+const StudentModel = require('../../models/StudentModel')
 router.get('/',fetchMentor,async(req,res)=>{
     try{
         const {rollNo}=req.body
@@ -22,6 +22,36 @@ router.get('/',fetchMentor,async(req,res)=>{
         res.status(500).json({
             success:false,
             message:`error is: ${err}`
+        })
+    }
+})
+
+//post for the approval...
+router.post('/formApproval',fetchMentor,async(req,res)=>{
+    const {form_no,rollNo,approvalStatus}=req.body;
+    try{
+        let student=await StudentModel.Student.findOne({rollNo},'undertakingForm -_id')
+        console.log(student)
+        if(student){
+            student.undertakingForm.forEach((obj) => {
+                if (obj.form_no === form_no) {
+                    obj.approvalStatus = approvalStatus;
+                }
+            });
+            console.log(student)    
+        }
+        
+        else{
+            res.status(500).json({
+                success:false,
+                message:"no user found with that rollNo!!!"
+            })
+        }
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            message:`error is ${err}`
         })
     }
 })

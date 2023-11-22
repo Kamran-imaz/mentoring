@@ -7,32 +7,49 @@ router.post('/', fetchStudent, async (req, res) => {
     try {
         const id = req.student.id;
         const checkStudent = await StudentModel.Student.findById(id);
-        // console.log(typeof(query))
-        if (query && query.length>=10) {
+
+        if (query && query.length >= 10) {
             if (checkStudent) {
-                checkStudent.addressingConcerns.push({
-                    query: query
+                let maxCounter = 0;
+
+                // Find the maximum counter value in the addressingConcerns array
+                checkStudent.addressingConcerns.forEach(entry => {
+                    if (entry.i > maxCounter) {
+                        maxCounter = entry.i;
+                    }
                 });
+
+                // Increment the maxCounter to set the new counter value (i)
+                const newCounter = maxCounter + 1;
+
+                // Add the new entry with the incremented counter value
+                checkStudent.addressingConcerns.push({
+                    query: query,
+                    form_no: newCounter,
+                    approvalStatus: false
+                });
+
                 await checkStudent.save();
-                res.json({
+
+                return res.json({
                     success: true,
                     message: "Your query has been saved!!!"
                 });
             } else {
-                res.json({
+                return res.json({
                     success: false,
                     message: "No user found"
                 });
             }
         } else {
-            res.json({
+            return res.json({
                 success: false,
                 message: "Your query is too short"
             });
         }
     } catch (err) {
-        console.log(err);
-        res.status(500).json({
+        console.error(err);
+        return res.status(500).json({
             success: false,
             message: "An error occurred"
         });
