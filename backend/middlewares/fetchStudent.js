@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 const JWT_Secret = process.env.JWT_SECRET;
 
 const fetchStudent = (req, res, next) => {
-    let token = req.header("auth-token")
+    let token = req.header('auth-token')
     let success = false
     jwt.verify(token, JWT_Secret, (err, data) => {
         if (data) {
@@ -10,7 +10,7 @@ const fetchStudent = (req, res, next) => {
             next();
         }
         else {
-            return res.status(500).json({ success, message: "Invalid Token - Cannot Fetch Student Details" })
+            return res.status(500).json({ success, message: err })
         }
     })
 }

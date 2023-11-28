@@ -3,9 +3,8 @@ const studentSchema=require('../../models/StudentModel')
 const fetchStudent=require('../../middlewares/fetchStudent')
 router.post('/',fetchStudent,async(req,res)=>{
     
-    const {semester,gpa,backlogs,subject,overallgpa}=req.body.marks;
+    const {semester,gpa,backlogs,subject,overallgpa}=req.body;
     const id=req.student.id
-    // console.log(id)
     try{
     const checkStudent=await studentSchema.Student.findById(id)
     if(checkStudent){
@@ -17,7 +16,7 @@ router.post('/',fetchStudent,async(req,res)=>{
             overallgpa:overallgpa
         })
         checkStudent.save()
-        res.json({
+        res.status(200).json({
             success:true,
             message:"successfully Updated"
         })
@@ -32,10 +31,10 @@ router.post('/',fetchStudent,async(req,res)=>{
     
 
 catch(err){
-    // console.log(err)
     console.log(err.message)
 }
 })
+
 
 
 module.exports=router

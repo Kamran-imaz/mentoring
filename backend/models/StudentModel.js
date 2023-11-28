@@ -58,6 +58,7 @@ const achievementsSchema = new mongoose.Schema({
 const studentSchema = new mongoose.Schema({
     rollNo: {
         type: Number,
+        unique: true,
         required: true,
     },
     name: {

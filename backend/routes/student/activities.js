@@ -30,7 +30,7 @@ router.post("/addLateArrival", [
             student.lateArrivals.push({ date, reason, period, semester })
             await student.save();
             success = true
-            return res.status(200).json({ success, student })
+            return res.status(200).json({ success, lateArrivals: student.lateArrivals })
         }
         catch (err) {
             return res.status(500).json({ success, message: err.message })
@@ -55,7 +55,19 @@ router.delete("/deleteLateArrival/:lateArrivalId", fetchStudent, async (req, res
     } catch (err) {
         return res.status(500).json({ success, message: err.message });
     }
-})
+});
+router.get("/lateArrivals", fetchStudent, async (req, res) => {
+    try {
+        const student = await StudentModel.Student.findById(req.student.id);
+        if (!student) {
+            return res.status(404).json({ success: false, message: "Student Not Found" });
+        }
+        return res.status(200).json({ success: true, lateArrivals: student.lateArrivals });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: err.message });
+    }
+});
+
 
 // Achievements Section
 router.post("/addAchievement",[

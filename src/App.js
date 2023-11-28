@@ -1,27 +1,27 @@
-<<<<<<< HEAD
-import LateArrivalForm from "./components/LateArrivalForm";
-import StudentProfile from "./components/StudentProfile";
-
-function App() {
-    return (
-        <>
-            <LateArrivalForm />
-            <StudentProfile />
-=======
-import Marks from "./components/Marks";
-import UndertakingForm from "./components/UndertakingForm";
+import Home from "./components/student/Home";
+import Marks from "./components/student/Marks";
+import UndertakingForm from "./components/student/UndertakingForm";
+import LateArrivalForm from "./components/student/LateArrivalForm";
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
+import Register from "./components/student/Register";
+import Login from "./components/student/Login";
+import Concerns from "./components/student/Concerns";
 function App() {
     return (
         <>
         <Router>
             <Routes>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/" element={<Login/>}/>
+                <Route path='/home' element={<Home/>}/>
                 <Route path="/undertakingForm" exact element={ <UndertakingForm/>}/>
                 <Route path="/marks" exact element={<Marks/>}/>
+                <Route path="/lateArrival" exact element={ <LateArrivalForm /> }/>
+                <Route path='/concerns' exact element={<Concerns/>}/>
+                <Route path="*" element={<h1>404 Not Found</h1>}/>
             </Routes>
         </Router>
            
->>>>>>> 477c8daaf9684f6d453f46bc52de659c2f83917a
         </>
     );
 }

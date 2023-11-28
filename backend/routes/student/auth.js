@@ -41,7 +41,7 @@ router.post("/signup", [
             return res.status(200).json({ success, authToken })
         }
         catch (err) {
-            return res.status(500).json({ success, message: err.message })
+            return res.status(500).json({ success, message: `error is:${err.message}` })
         }
     })
 
