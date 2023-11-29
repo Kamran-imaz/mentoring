@@ -65,19 +65,19 @@ router.get('/getHistory', fetchStudent, async (req, res) => {
         
         if (checkStudent) {
             res.status(200).json({
-                success: true,
-                message: checkStudent
+                success2: true,
+                message2: checkStudent
             });
         } else {
             res.json({
-                success: false,
-                message: "Student does not exist!!!"
+                success2: false,
+                message2: "Student does not exist!!!"
             });
         }
     } catch (err) {
         res.status(500).json({
-            success: false,
-            message: err
+            success2: false,
+            message2: err
         });
         console.log(err);
     }

@@ -8,22 +8,22 @@ const Navbar = () => {
     navigate('/');
   }
   return (
-    <nav className="flex justify-between items-center border border-b-black text-black bg-gray-200 p-4">
+    <nav className="flex justify-between items-center border border-b-black text-black bg-gray-200 p-4" style={{position:"sticky",top:0}}>
       {/* Logo or title */}
       <h1 className="text-3xl font-bold">CBIT</h1>
       {/* Navbar options */}
       <div className="flex space-x-4">
         <Link
+          to="/home"
+          className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded"
+        >
+          Home
+        </Link>
+        <Link
           to="/undertakingForm"
           className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded"
         >
           Undertaking Form
-        </Link>
-        <Link
-          to="/marks"
-          className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded"
-        >
-          Marks
         </Link>
         <Link
           to="/concerns"

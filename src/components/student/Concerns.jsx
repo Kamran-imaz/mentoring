@@ -20,12 +20,12 @@ const Concerns = () => {
             'auth-token':token
           }
         })
-        const {success,message}=response.data;
-        if(success){
-          setFindForm(message)
+        const {success2,message2}=response.data;
+        if(success2){
+          setFindForm(message2)
         }
         else{
-          toast.error(message, {
+          toast.error(message2, {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -60,9 +60,9 @@ const Concerns = () => {
                     'auth-token':token
                 }
             })
-            const {success,message}=response.data
-            if(success){
-                toast.success("Query Submitted Successfully!!!", {
+            const {success2,message2}=response.data
+            if(success2){
+                toast.success2("Query Submitted success2fully!!!", {
                     position: "top-center",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -75,7 +75,7 @@ const Concerns = () => {
                 setQuery('')
             }
             else{
-                toast.error(message, {
+                toast.error(message2, {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,

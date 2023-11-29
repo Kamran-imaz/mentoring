@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,10 @@ function Login() {
     rollNo: '',
     password: '',
   });
+
+  useEffect(()=>{
+    localStorage.removeItem('auth-token')
+  },[])
 
   const navigate = useNavigate();
 
@@ -50,7 +54,7 @@ function Login() {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200">
       <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl font-semibold mb-4">Login</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center">Student Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="rollNo" className="block mb-1">
@@ -84,7 +88,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            className="bg-black text-white py-2 px-4 rounded hover:bg-blue-800"
           >
             Login
           </button>

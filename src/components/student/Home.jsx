@@ -1,59 +1,123 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import axios from "axios";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [undertaking, setUndertaking] = useState({});
+  const [concern,setConcern]=useState({});
+  const [resultConcern,setResultConcern]=useState(0);
+  const [resultUndertaking,setResultUndertaking]=useState(0)
+  // let resultUndertaking = 0;
+  useEffect(() => {
+    const token = localStorage.getItem("auth-token");
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const response1 = await axios.get(
+            "http://localhost:80/api/student/undertakingForm/getHistory",
+            {
+              headers: {
+                "auth-token": token,
+              },
+            }
+          );
+          const response2=await axios.get('http://localhost:80/api/student/concerns/getHistory',{
+            headers:{
+              'auth-token':token
+            }
+          })
+          const { success, message } = response1.data;
+          const {success2,message2}=response2.data;
+          // console.log(success2)
+          if (success || success2) {
+            setUndertaking(message);
+            setConcern(message2)
+            let result1 = undertaking.undertakingForm.reduce(
+              (acc, obj) => {
+                if (obj.approvalStatus === false) {
+                  return acc + 1;
+                }
+              },
+              0
+            );
+            let result2=concern.addressingConcerns.reduce((acc,obj)=>{
+              if(obj.approvalStatus===false){
+                return acc+1
+              }
+            },0)
+            setResultUndertaking(result1)
+            setResultConcern(result2)
+          } else {
+            setUndertaking("No data found");
+          }
+        } else {
+          navigate("/");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  });
   return (
     <div className=" bg-gray-200">
       {/* Navigation */}
-      
+
       <Navbar />
 
       {/* Carousel */}
-      <div className="bg-gray-200 p-6 rounded-lg shadow-md mb-8">
-        {/* Carousel content */}
-        <div className="carousel">
-          <img src="https://d2n36fr2627nzy.cloudfront.net/test/images/logo.png" alt="Carousel Image" />
-          {/* You can add multiple images or customize the carousel as needed */}
+      <div class="bg-gray-200 p-6 rounded-lg shadow-md mb-8">
+        <div class="flex justify-center items-center">
+          <div class="carousel">
+            <img
+              src="https://d2n36fr2627nzy.cloudfront.net/test/images/logo.png"
+              alt="CBIT logo Image"
+            />
+          </div>
         </div>
       </div>
 
       {/* Main content */}
-      {/* Removed the content below the carousel */}
 
-      {/* Late Arrival Form */}
-      <div className="bg-white p-6 rounded-lg shadow-md mb-8" id="undertakingForm">
-        <h2 className="text-2xl font-bold mb-4">Undertaking Form</h2>
-        {/* Form elements for undertaking form */}
-        {/* ... */}
-      </div>
-
-      {/* Marks */}
-      <div className="bg-white p-6 rounded-lg shadow-md mb-8" id="marks">
-        <h2 className="text-2xl font-bold mb-4">Marks</h2>
-        {/* Display student marks */}
-        {/* ... */}
+      {/* Undertaking Form */}
+      <div
+        className="bg-white p-6 rounded-lg shadow-md mb-8"
+        id="undertakingForm"
+      >
+        <h2 className="text-2xl font-bold mb-4">
+          <Link  to="/undertakingForm" className="hover:text-white transition duration-300 px-3 py-2 rounded hover:bg-blue-800">
+            Undertaking Form
+          </Link>
+        </h2>
+        {resultUndertaking !== undefined && resultUndertaking !== null ? (
+          <span className="px-3">You have <strong className="text-red-500">{resultUndertaking}</strong> forms which are not approved</span>
+        ) : (
+          <span className="text-green-500">No pending forms.</span>
+        )}
       </div>
 
       {/* Addressing Concerns */}
-      <div className="bg-white p-6 rounded-lg shadow-md mb-8" id="addressingConcerns">
-        <h2 className="text-2xl font-bold mb-4">Addressing Concerns</h2>
-        {/* Addressing concerns content */}
-        {/* ... */}
+      <div
+        className="bg-white p-6 rounded-lg shadow-md mb-8"
+        id="addressingConcerns"
+      >
+        <h2 className="text-2xl font-bold mb-4"><Link to="/concerns" className="hover:text-white transition duration-300 px-3 py-2 rounded hover:bg-blue-800">Addressing Concerns</Link></h2>
+
+        {resultConcern!==undefined && resultConcern!==null ? (<span className="px-3">You have <strong className="text-red-500">{resultConcern}</strong> forms which are not approved</span>):(<span className="text-green-500">No pending forms.</span>)}
       </div>
 
       {/* Achievements */}
       <div className="bg-white p-6 rounded-lg shadow-md mb-8" id="achievements">
-        <h2 className="text-2xl font-bold mb-4">Achievements</h2>
+      <h2 className="text-2xl font-bold mb-4"><Link to="/lateArrival" className="hover:text-white transition duration-300 px-3 py-2 rounded hover:bg-blue-800">Late Arrival</Link></h2>
         {/* Display student achievements */}
         {/* ... */}
       </div>
-
-      {/* Profile */}
-      <div className="bg-white p-6 rounded-lg shadow-md mb-8" id="profile">
-        <h2 className="text-2xl font-bold mb-4">Profile</h2>
-        {/* Student profile information */}
-        {/* ... */}
+      
+      {/* Marks */}
+      <div className="bg-white p-6 rounded-lg shadow-md mb-8" id="marks">
+        <h2 className="text-2xl font-bold mb-4"><Link to="/marks" className="hover:text-white transition duration-300 px-3 py-2 rounded hover:bg-blue-800">Marks</Link></h2>
       </div>
     </div>
   );
