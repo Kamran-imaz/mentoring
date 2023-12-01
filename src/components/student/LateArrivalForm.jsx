@@ -75,10 +75,13 @@ function LateArrivalForm() {
             console.log(data);
             console.log(data.lateArrivals);
             setLateArrivals(data.lateArrivals);
-            setError('');
+            setError("");
         }
         else {
-            setError('Please provide a date, period, semester, reason, and file.');
+            setError("Please fill all the fields");
+            setTimeout(() => {
+                setError("");
+            }, 2500);
         }
     };
 

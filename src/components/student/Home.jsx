@@ -9,6 +9,7 @@ const Home = () => {
     const [concern, setConcern] = useState({});
     const [resultConcern, setResultConcern] = useState(0);
     const [resultUndertaking, setResultUndertaking] = useState(0);
+    const [noOfLateArrivals, setNoOfLateArrivals] = useState(0);
     useEffect(() => {
         const token = localStorage.getItem("auth-token");
         const fetchData = async () => {
@@ -30,9 +31,16 @@ const Home = () => {
                             },
                         }
                     );
+                    const response3 = await fetch("http://localhost:80/api/student/activities/lateArrivals",{
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": token,
+                        },
+                    })
                     const { success, message } = response1.data;
                     const { success2, message2 } = response2.data;
-                    // console.log(success2)
+                    const {lateArrivals} = await response3.json();
                     if (success || success2) {
                         setUndertaking(message);
                         setConcern(message2);
@@ -48,10 +56,15 @@ const Home = () => {
                         }, 0);
                         setResultUndertaking(result1);
                         setResultConcern(result2);
-                    } else {
+                    } 
+                    else {
                         setUndertaking("No data found");
                     }
-                } else {
+                    if(lateArrivals){
+                        setNoOfLateArrivals(lateArrivals.length);
+                    }
+                } 
+                else {
                     navigate("/");
                 }
             } catch (err) {
@@ -59,7 +72,7 @@ const Home = () => {
             }
         };
         fetchData();
-    });
+    }, []);
     return (
         <>
             <div className="bg-gray-200">
@@ -132,8 +145,14 @@ const Home = () => {
                                 Late Arrival
                             </Link>
                         </h2>
-                        {/* Display student achievements */}
-                        {/* ... */}
+                        {noOfLateArrivals !== 0 ? (
+                            <span className="px-3">
+                                You have <strong className="text-red-500">{noOfLateArrivals}</strong>{" "}
+                                forms which are not approved
+                            </span>
+                        ) : (
+                            <span className="text-green-500">No pending forms.</span>
+                        )}
                     </div>
 
                     {/* Marks */}
