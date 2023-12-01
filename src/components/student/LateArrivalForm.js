@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
 function LateArrivalForm() {
     const [lateDate, setLateDate] = useState('');
     const [latePeriod, setLatePeriod] = useState('');
     const [lateSemester, setLateSemester] = useState('');
     const [lateReason, setLateReason] = useState('');
     const [reasonFile, setReasonFile] = useState(null);
-    const [lateArrivals, setLateArrivals] = useState([]);
+    const [lateArrivals, setLateArrivals] = useState([{}]);
     const [error, setError] = useState('');
     const today = new Date();
     const handleDateChange = (e) => {
@@ -34,22 +31,22 @@ function LateArrivalForm() {
         setReasonFile(file);
     };
 
-    // useEffect()
-
+    useEffect(() => {
     const fetchLateArrivals = async () =>{
-        const response = await fetch("http://localhost:5000/api/student/activities/lateArrivals",
-        {
-            method: "GET",
-            headers: {
+        const response = await fetch("http://localhost:80/api/student/activities/lateArrivals",
+            {
+                method: "GET",
+                headers: {
                     "Content-Type": "application/json",
-                    "auth-token": localStorage.getItem("token"),
-            },
-        });
+                    "auth-token": localStorage.getItem("auth-token"),
+                },
+            });
         const data = await response.json();
-        setLateArrivals(data);
+        setLateArrivals(data.lateArrivals);
         console.log(data);
-        console.log(lateArrivals);
-    };
+    }; 
+    fetchLateArrivals();
+    }, []);
 
     const handleSubmit = async () => {
         if (lateDate && latePeriod && lateSemester && lateReason && reasonFile) {
@@ -60,14 +57,25 @@ function LateArrivalForm() {
                 reason: lateReason,
                 // reasonFile: reasonFile,
             };
-            setLateArrivals([...lateArrivals, newLateArrival]);
-            setLateDate('');
-            setLatePeriod('');
-            setLateSemester('');
-            setLateReason('');
-            setReasonFile(null);
+            // setLateArrivals([...lateArrivals, newLateArrival]);
+            // setLateDate('');
+            // setLatePeriod('');
+            // setLateSemester('');
+            // setLateReason('');
+            // setReasonFile(null);
+            const response = await fetch("http://localhost:80/api/student/activities/addLateArrival",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": localStorage.getItem("auth-token"),
+                    },
+                    body: JSON.stringify(newLateArrival),
+                });
+            const data = await response.json();
+            console.log(data);
+            setLateArrivals(data.lateArrivals);
             setError('');
-            
         }
         else {
             setError('Please provide a date, period, semester, reason, and file.');
@@ -77,7 +85,7 @@ function LateArrivalForm() {
     return (
         <>
         <Navbar />
-        <div className=" mx-auto py-8 bg-gray-200">
+        <div className=" mx-auto py-8 bg-gray-200 min-h-max">
             <div className="mx-auto w-3/5 p-3 h-screen">
             <h2 className="text-2xl font-bold mb-4 text-center">Late Arrival Form</h2>
             {error && <p className="text-red-600 mb-4">{error}</p>}
@@ -145,7 +153,22 @@ function LateArrivalForm() {
                     </tr>
                 </thead>
                 <tbody>
-                    {lateArrivals.map((arrival, index) => (
+                    {lateArrivals.length === 0 && (
+                        <tr>
+                            <td className="border border-black p-2 text-center" colSpan="5">
+                                No late arrivals
+                            </td>
+                        </tr>
+                    )}
+                    {lateArrivals.length > 0 && (
+                        <tr>
+                            <td className="border border-black p-2 text-center" colSpan="5">
+                                {lateArrivals.length} late arrival(s)
+                            </td>
+                        </tr>
+                    )}
+                    {
+                    lateArrivals.map((arrival, index) => (
                         <tr key={index}>
                             <td className="border border-black p-2">{arrival.date}</td>
                             <td className="border border-black p-2">{arrival.period}</td>
@@ -164,7 +187,8 @@ function LateArrivalForm() {
                                 )}
                             </td> */}
                         </tr>
-                    ))}
+                    ))
+                    }
                 </tbody>
             </table>
         </div>

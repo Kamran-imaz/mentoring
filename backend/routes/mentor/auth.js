@@ -107,4 +107,30 @@ router.put("/updateMentorDetails", fetchMentor, async (req, res) => {
         }
     })
 
+
+//This route is used to fetch all the details from the student database
+
+    router.get('/getStudents',fetchMentor, async (req, res) => {
+        try {
+            const students = await StudentModel.Student.find({});
+            if (students.length > 0) {
+                return res.status(200).json({
+                    success: true,
+                    message: students
+                });
+            } else {
+                return res.status(404).json({
+                    success: false,
+                    message: "No students found in the database"
+                });
+            }
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                success: false,
+                message: "Internal Server Error. Failed to fetch students."
+            });
+        }
+    });
+
 module.exports = router

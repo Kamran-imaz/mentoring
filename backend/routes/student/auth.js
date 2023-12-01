@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
         }
     })
     
-router.post("/getStudentDetails", fetchStudent, async (req, res) => {
+router.get("/getStudentDetails", fetchStudent, async (req, res) => {
         let success = false
         try {
             let id = req.student.id;
@@ -86,5 +86,26 @@ router.post("/getStudentDetails", fetchStudent, async (req, res) => {
             return res.status(500).json({ success, message: err.message })
         }
     })
-    
+    router.get('/getStudents', async (req, res) => {
+        try {
+            const students = await StudentModel.Student.find({});
+            if (students.length > 0) {
+                return res.status(200).json({
+                    success: true,
+                    message: students
+                });
+            } else {
+                return res.status(404).json({
+                    success: false,
+                    message: "No students found in the database"
+                });
+            }
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                success: false,
+                message: "Internal Server Error. Failed to fetch students."
+            });
+        }
+    });
 module.exports = router

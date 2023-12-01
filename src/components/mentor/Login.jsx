@@ -6,9 +6,9 @@ import { useNavigate ,Link} from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Login() {
+function MentorLogin() {
   const [formData, setFormData] = useState({
-    rollNo: '',
+    email: '',
     password: '',
   });
 
@@ -27,12 +27,12 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:80/api/student/auth/login', formData);
+      const response = await axios.post('http://localhost:80/api/mentor/auth/login', formData);
       const { success, authToken } = response.data;
 
       if (success) {
         localStorage.setItem('auth-token', authToken);
-        navigate('/home');
+        navigate('/mentorHome');
       } else {
         toast.error('Incorrect Credentials.', {
           position: "top-center",
@@ -54,16 +54,16 @@ function Login() {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200">
       <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Student Login</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center">Mentor Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="rollNo" className="block mb-1">
-              Roll Number
+            <label htmlFor="email" className="block mb-1">
+              Email
             </label>
             <input
-              type="text"
-              id="rollNo"
-              name="rollNo"
+              type="email"
+              id="email"
+              name="email"
               value={formData.rollNo}
               onChange={handleChange}
               className="border-gray-300 rounded-md border w-full px-3 py-2"
@@ -91,7 +91,7 @@ function Login() {
             className="bg-black text-white py-2 px-4 rounded hover:bg-blue-800"
           >
             Login
-          </button> <span>are you mentor <Link to="/mentorRegister">register?</Link> <Link to="/mentorLogin">login?</Link></span>
+          </button> <span>are you student <Link to="/register">register?</Link> <Link to="/">login?</Link></span>
         </form>
       </div>
       <ToastContainer/>
@@ -99,4 +99,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default MentorLogin;

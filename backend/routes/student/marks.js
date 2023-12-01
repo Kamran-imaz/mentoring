@@ -3,7 +3,8 @@ const studentSchema=require('../../models/StudentModel')
 const fetchStudent=require('../../middlewares/fetchStudent')
 router.post('/',fetchStudent,async(req,res)=>{
     
-    const {semester,gpa,backlogs,subject,overallgpa}=req.body;
+    const {semester,gpa,backlogs,subject,overallgpa}=req.body.currentSemester;
+    console.log(typeof(req.body.currentSemester.semester))
     const id=req.student.id
     try{
     const checkStudent=await studentSchema.Student.findById(id)

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate,Link } from 'react-router-dom'; // Assuming you use React Router for navigation
+import { useNavigate,Link } from 'react-router-dom'; 
 import axios from 'axios'
-function Register() {
+function MentorRegister() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    rollNo: '',
     name: '',
     password: '',
-    branch: '',
+    email: '',
   });
 
   const handleChange = (e) => {
@@ -18,12 +17,12 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:80/api/student/auth/signup', formData);
+        const response = await axios.post('http://localhost:80/api/mentor/auth/signup', formData);
         const { success, authToken } = response.data;
   
         if (success) {
           localStorage.setItem('authToken', authToken);
-          navigate('/'); 
+          navigate('/mentorLogin'); 
         } else {
           console.error('Login failed');
         }
@@ -35,23 +34,8 @@ function Register() {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200">
       <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Student Register</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center">Mentor Register</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="rollNo" className="block mb-1">
-              Roll Number
-            </label>
-            <input
-              type="text"
-              id="rollNo"
-              name="rollNo"
-              value={formData.rollNo}
-              onChange={handleChange}
-              className="border-gray-300 rounded-md border w-full px-3 py-2"
-              placeholder="Enter Roll Number"
-              required
-            />
-          </div>
           <div className="mb-4">
             <label htmlFor="name" className="block mb-1">
               Name
@@ -83,13 +67,13 @@ function Register() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="branch" className="block mb-1">
-              Branch
+            <label htmlFor="email" className="block mb-1">
+              Email
             </label>
             <input
-              type="text"
-              id="branch"
-              name="branch"
+              type="email"
+              id="email"
+              name="email"
               value={formData.branch}
               onChange={handleChange}
               className="border-gray-300 rounded-md border w-full px-3 py-2"
@@ -102,11 +86,11 @@ function Register() {
             className="bg-black text-white py-2 px-4 rounded hover:bg-blue-800"
           >
             Register
-          </button> <span>already have an account? <Link to="/">login</Link></span>
+          </button> <span>already have an account? <Link to="/mentorLogin">login</Link></span>
         </form>
       </div>
     </div>
   );
 }
 
-export default Register;
+export default MentorRegister;

@@ -6,11 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const SemesterDetails = () => {
   const [currentSemester, setCurrentSemester] = useState({
-    sem: "",
+    semester: "",
     gpa: "",
     backlogs: "",
     subject: "",
-    overallCGPA: "",
+    overallgpa: "",
   });
 
   const handleInputChange = (e) => {
@@ -22,9 +22,9 @@ const SemesterDetails = () => {
   };
 
   const handleSave = async() => {
-    const { sem, gpa, backlogs, subject, overallCGPA } = currentSemester;
+    const { semester, gpa, backlogs, subject, overallgpa } = currentSemester;
     try{
-    if (sem && gpa && backlogs && subject && overallCGPA) {
+    if (semester && gpa && backlogs && subject && overallgpa) {
       const token=localStorage.getItem('auth-token')
       const response=await axios.post('http://localhost:80/api/student/marks',{currentSemester},{
         headers:{
@@ -57,11 +57,11 @@ const SemesterDetails = () => {
         });
       }
       setCurrentSemester({
-        sem: "",
+        semester: "",
         gpa: "",
         backlogs: "",
         subject: "",
-        overallCGPA: "",
+        overallgpa: "",
       });
     } 
     else
@@ -93,8 +93,8 @@ const SemesterDetails = () => {
             <label className="block text-gray-700">Semester:</label>
             <input
               type="text"
-              name="sem"
-              value={currentSemester.sem}
+              name="semester"
+              value={currentSemester.semester}
               onChange={handleInputChange}
               className="border w-full p-2 rounded"
             />
@@ -133,8 +133,8 @@ const SemesterDetails = () => {
             <label className="block text-gray-700">Overall CGPA:</label>
             <input
               type="text"
-              name="overallCGPA"
-              value={currentSemester.overallCGPA}
+              name="overallgpa"
+              value={currentSemester.overallgpa}
               onChange={handleInputChange}
               className="border w-full p-2 rounded"
             />

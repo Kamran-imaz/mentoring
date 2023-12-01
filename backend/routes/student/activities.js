@@ -6,7 +6,7 @@ const fetchStudent = require("../../middlewares/fetchStudent");
 
 // Late Arrival Section
 router.post("/addLateArrival", [
-    body("date", "Enter Valid Date").isDate(),
+    // body("date", "Enter Valid Date").isDate(),
     body("reason", "Enter Valid Reason").isString().isLength({ min: 8, max: 100 }),
     body("period", "Enter Valid Period").isNumeric().matches(/^[1-6]$/),
     body("semester", "Enter Valid Semester").isNumeric()],
@@ -36,6 +36,7 @@ router.post("/addLateArrival", [
             return res.status(500).json({ success, message: err.message })
         }
     })
+
 
 router.delete("/deleteLateArrival/:lateArrivalId", fetchStudent, async (req, res) => {
     let success = false;
