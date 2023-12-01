@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const lateArrivalSchema = new mongoose.Schema({
     date: {
-        type: Number,
+        type: Date,
         required: true
     },
     period: {
@@ -19,8 +19,8 @@ const lateArrivalSchema = new mongoose.Schema({
     },
     status: {
         type: String,
+        enum: ["pending", "accepted", "rejected"],
         default: "pending",
-        required: true
     },
     // file: {
     //     type: BSON,

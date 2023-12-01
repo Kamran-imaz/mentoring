@@ -43,7 +43,6 @@ function LateArrivalForm() {
             });
         const data = await response.json();
         setLateArrivals(data.lateArrivals);
-        console.log(data);
     }; 
     fetchLateArrivals();
     }, []);
@@ -74,6 +73,7 @@ function LateArrivalForm() {
                 });
             const data = await response.json();
             console.log(data);
+            console.log(data.lateArrivals);
             setLateArrivals(data.lateArrivals);
             setError('');
         }
@@ -149,6 +149,7 @@ function LateArrivalForm() {
                         <th className="border border-black p-2">Period</th>
                         <th className="border border-black p-2">Semester</th>
                         <th className="border border-black p-2">Reason</th>
+                        <th className="border border-black p-2">Status</th>
                         {/* <th className="border border-black p-2">File</th> */}
                     </tr>
                 </thead>
@@ -160,20 +161,17 @@ function LateArrivalForm() {
                             </td>
                         </tr>
                     )}
-                    {lateArrivals.length > 0 && (
-                        <tr>
-                            <td className="border border-black p-2 text-center" colSpan="5">
-                                {lateArrivals.length} late arrival(s)
-                            </td>
-                        </tr>
-                    )}
                     {
                     lateArrivals.map((arrival, index) => (
                         <tr key={index}>
-                            <td className="border border-black p-2">{arrival.date}</td>
-                            <td className="border border-black p-2">{arrival.period}</td>
-                            <td className="border border-black p-2">{arrival.semester}</td>
-                            <td className="border border-black p-2">{arrival.reason}</td>
+                            <td className="border border-black p-2 text-center">{new Date(arrival.date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })
+}</td>
+                            <td className="border border-black p-2 text-center">{arrival.period}</td>
+                            <td className="border border-black p-2 text-center">{arrival.semester}</td>
+                            <td className="border border-black p-2 text-center">{arrival.reason}</td>
+                            <td className={`border border-black p-2 text-center`
+                        + (arrival.status === 'pending' ? ' bg-yellow-400' : arrival.status === 'accepted' ? ' bg-green-400' : ' bg-red-400')
+                        }>{arrival.status}</td>
                             {/* <td className="border border-black p-2">
                                 {arrival.reasonFile && (
                                     <a
