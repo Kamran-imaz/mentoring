@@ -37,7 +37,6 @@ router.post("/addLateArrival", [
         }
     })
 
-
 router.delete("/deleteLateArrival/:lateArrivalId", fetchStudent, async (req, res) => {
     let success = false;
     try {
