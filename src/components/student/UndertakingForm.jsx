@@ -195,9 +195,9 @@ function UndertakingForm() {
           <table className="min-w-full border border-black">
             <thead>
               <tr>
-                <th className="border p-2 border-black">Date</th>
-                <th className="border p-2 border-black">Download PDF</th>
-                <th className="border p-2 border-black">Approval Status</th>
+                <th className="border p-2 border-black text-center">Date</th>
+                <th className="border p-2 border-black text-center">Download PDF</th>
+                <th className="border p-2 border-black text-center">Approval Status</th>
               </tr>
             </thead>
             <tbody>

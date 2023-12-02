@@ -133,4 +133,35 @@ router.put("/updateMentorDetails", fetchMentor, async (req, res) => {
         }
     });
 
+    router.post('/getParticularStudent',fetchMentor,async(req,res)=>{
+        const rollNo=req.body.rollNo;
+        if(rollNo){
+            try{
+                const findStudent=await StudentModel.Student.find({rollNo})
+                if(findStudent){
+                    return res.status(200).json({
+                        success:true,
+                        message:findStudent[0]
+                    })
+                }
+                else{
+                    return res.json({
+                        success:false,
+                        message:"no student found with that roll no"
+                    })
+                }
+            }
+            catch(err){
+
+                console.log(err)
+            }
+        }
+        else{
+            console.log("error no rollno")
+            return res.json({
+                success:false,
+                message:"not a valid rollno"
+            })
+        }
+    })
 module.exports = router

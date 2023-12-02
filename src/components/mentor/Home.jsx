@@ -5,39 +5,39 @@ import { Link } from "react-router-dom";
 
 const MentorHome = () => {
   const [display, setDisplay] = useState();
-  const [rollno,setRollNo]=useState('');
-  const handleClick=(roll)=>{
-    setRollNo(roll)
-  }
-  useEffect(() => {
-    const fetchData=async()=>{
-      const token=localStorage.getItem('auth-token');
-      if(token){
-        try{
-          const response=await axios.post('',{rollno},{
-            headers:{
-              'auth-token':token
-            }
-          })
-          const {success,message}=response.data;
-          if(success){
+  // const [rollno,setRollNo]=useState('');
+  // const handleClick=(roll)=>{
+  //   setRollNo(roll)
+  // }
+  // useEffect(() => {
+  //   const fetchData=async()=>{
+  //     const token=localStorage.getItem('auth-token');
+  //     if(token){
+  //       try{
+  //         const response=await axios.post('',{rollno},{
+  //           headers:{
+  //             'auth-token':token
+  //           }
+  //         })
+  //         const {success,message}=response.data;
+  //         if(success){
 
-          }
-          else{
-            console.log(message)
-          }
-        }
-        catch(err){
-          console.log(err)
-        }
-      }
-      else{
-        console.log("no token available")
-      }
-    }
-    fetchData();
-  },[rollno]
-  );
+  //         }
+  //         else{
+  //           console.log(message)
+  //         }
+  //       }
+  //       catch(err){
+  //         console.log(err)
+  //       }
+  //     }
+  //     else{
+  //       console.log("no token available")
+  //     }
+  //   }
+  //   fetchData();
+  // },[rollno]
+  // );
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("auth-token");
@@ -98,7 +98,8 @@ const MentorHome = () => {
               display.map((ele, index) => (
                 <tr key={index}>
                   <td className="border p-2 border-black text-center">{index + 1}</td>
-                  <td className="border p-2 border-black text-center"><button className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded" onClick={() => handleClick(ele.rollNo)}><Link to="/combineLinks">{ele.rollNo}</Link></button></td>
+                  <td className="border p-2 border-black text-center"><button className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded" ><Link to={`/combineLinks/${ele.rollNo}`}>{ele.rollNo}</Link></button></td>
+                  {/* {console.log(ele.rollNo)} */}
                   <td className="border p-2 border-black text-center">{ele.name}</td>
                   <td className="border p-2 border-black text-center">1</td>
                 </tr>

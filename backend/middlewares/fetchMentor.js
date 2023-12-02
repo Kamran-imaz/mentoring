@@ -10,7 +10,7 @@ const fetchMentor = (req, res, next) => {
             next();
         }
         else {
-            return res.status(500).json({ success, message: "Invalid Token - Cannot Fetch Mentor Details" });
+            return res.status(500).json({ success, message: `Invalid Token - Cannot Fetch Mentor Details ${err}` });
         }
     })
 }

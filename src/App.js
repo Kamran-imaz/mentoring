@@ -34,7 +34,8 @@ function App() {
                 <Route path="/mentorRegister" exact element={<MentorRegister/>}/>
                 <Route path="/mentorLogin" exact element={<MentorLogin/>}/>
                 <Route path="/mentorHome" exact element={< MentorHome/>}/>
-                <Route path="/combineLinks" exact element={<CombineLinks/>}/>
+                <Route path="/combineLinks/:rollNo" exact element={<CombineLinks/>}/>
+                
             </Routes>
         </Router>
            
