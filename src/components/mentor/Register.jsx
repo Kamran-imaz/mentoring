@@ -94,6 +94,12 @@ function MentorRegister() {
                         </span>
                     </div>
                 </form>
+                <br />
+                <p className="w-fit mx-auto my-2">
+                    Are you Student?
+                    <Link className="bg-black text-white ml-2 p-2 rounded-l-lg hover:bg-blue-800" to="/register">Register</Link>
+                    <Link className="bg-black text-white p-2 rounded-r-lg hover:bg-blue-800" to="/">Login</Link>
+                </p>
             </div>
         </div>
     );

@@ -86,18 +86,25 @@ function MentorLogin() {
                             required
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="bg-black text-white py-2 px-4 rounded hover:bg-blue-800"
-                    >
-                        Login
-                    </button> <br />
-                    <p className="w-fit mx-auto my-2">
-                        Are you Student?
-                        <Link className="bg-black text-white ml-2 p-2 rounded-l-lg hover:bg-blue-800" to="/register">Register</Link>
-                        <Link className="bg-black text-white p-2 rounded-r-lg hover:bg-blue-800" to="/">Login</Link>
-                    </p>
+                    <div className="flex flex-row justify-between items-center">
+                        <button
+                            type="submit"
+                            className="bg-black text-white p-2 rounded hover:bg-blue-800"
+                        >
+                            Login
+                        </button>
+                        <span>
+                            Register as Mentor?
+                            <Link className="bg-black text-white p-2 ml-2 rounded hover:bg-blue-800" to="/mentorRegister">Register</Link>
+                        </span>
+                    </div>
                 </form>
+                <br />
+                <p className="w-fit mx-auto my-2">
+                    Are you Student?
+                    <Link className="bg-black text-white ml-2 p-2 rounded-l-lg hover:bg-blue-800" to="/register">Register</Link>
+                    <Link className="bg-black text-white p-2 rounded-r-lg hover:bg-blue-800" to="/">Login</Link>
+                </p>
             </div>
             <ToastContainer />
         </div>
