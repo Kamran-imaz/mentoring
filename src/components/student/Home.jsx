@@ -135,7 +135,7 @@ const Home = () => {
                         )}
                     </div>
 
-                    {/* Achievements */}
+                    {/* Late Arrival */}
                     <div className="bg-white p-6 rounded-lg shadow-md mb-8" id="achievements" >
                         <h2 className="text-2xl font-bold mb-4">
                             <Link
@@ -151,7 +151,7 @@ const Home = () => {
                                 forms which are not approved
                             </span>
                         ) : (
-                            <span className="text-green-500">No pending forms.</span>
+                            <span>No pending forms.</span>
                         )}
                     </div>
 
