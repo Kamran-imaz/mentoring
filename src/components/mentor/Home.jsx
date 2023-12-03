@@ -92,7 +92,7 @@ const MentorHome = () => {
                                 students.map((student, index) => (
                                     <tr key={index}>
                                         <td className="border p-2 border-black text-center">{index + 1}</td>
-                                        <td className="border p-2 border-black text-center"><button className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded" onClick={() => handleClick(student.rollNo)}><Link to="/combineLinks">{student.rollNo}</Link></button></td>
+                                        <td className="border p-2 border-black text-center"><button className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded" onClick={() => handleClick(student.rollNo)}><Link to={`/combineLinks/${student.rollNo}`}>{student.rollNo}</Link></button></td>
                                         <td className="border p-2 border-black text-center">{student.name}</td>
                                         <td className="border p-2 border-black text-center">{countPending(student)}</td>
                                     </tr>

@@ -15,8 +15,8 @@ router.post('/', fetchStudent, async (req, res) => {
 
                 // Find the maximum counter value in the addressingConcerns array
                 checkStudent.addressingConcerns.forEach(entry => {
-                    if (entry.i > maxCounter) {
-                        maxCounter = entry.i;
+                    if (entry.form_no > maxCounter) {
+                        maxCounter = entry.form_no;
                     }
                 });
 
