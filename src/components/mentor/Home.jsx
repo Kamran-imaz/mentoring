@@ -22,12 +22,12 @@ const MentorHome = () => {
                             },
                         }
                     );
-                    const { success, message } = response.data;
+                    const { success, students } = response.data;
                     if (success) {
-                        setStudents(message);
+                        setStudents(students);
                     }
                     else {
-                        console.log(message)
+                        console.log("Error fetching students")
                     }
                 } catch (err) {
                     console.log(err);
@@ -35,7 +35,6 @@ const MentorHome = () => {
             }
         };
         fetchData();
-        console.log(students)
     }, []);
 
     const countPending = (student) => {

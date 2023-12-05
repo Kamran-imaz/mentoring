@@ -36,7 +36,7 @@ const StudentProfile = () => {
         <>
             <Navbar />
             <div className="bg-gray-200 overflow-auto h-screen">
-                <div className="max-w-2xl mx-auto my-4 p-4 bg-gray-100 rounded shadow">
+                <div className="w-3/5 lg:w-2/5 overflow-auto mx-auto my-4 p-4 bg-gray-100 rounded shadow">
                     <h1 className="text-2xl font-bold mb-4">Student Profile</h1>
                     <p className="mb-2">
                         <span className="font-bold">Roll No:</span> {student.rollNo}
@@ -55,28 +55,28 @@ const StudentProfile = () => {
                         <table className="min-w-full border border-gray-300">
                             <thead>
                                 <tr>
-                                    <th className="border p-2">Semester</th>
-                                    <th className="border p-2">GPA</th>
-                                    <th className="border p-2">Backlogs</th>
-                                    <th className="border p-2">Subject</th>
-                                    <th className="border p-2">Overall GPA</th>
+                                    <th className="border border-black text-center p-2">Semester</th>
+                                    <th className="border border-black text-center p-2">GPA</th>
+                                    <th className="border border-black text-center p-2">Backlogs</th>
+                                    <th className="border border-black text-center p-2">Subject</th>
+                                    <th className="border border-black text-center p-2">Overall GPA</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {student.marks.length === 0 && (
                                     <tr>
-                                        <td className="border p-2 text-center" colSpan="5">
+                                        <td className="border border-black p-2 text-center" colSpan="5">
                                             No marks available
                                         </td>
                                     </tr>
                                 )}
                                 {student.marks.map((mark, index) => (
                                     <tr key={index}>
-                                        <td className="border p-2">{mark.semester}</td>
-                                        <td className="border p-2">{mark.gpa}</td>
-                                        <td className="border p-2">{mark.backlogs}</td>
-                                        <td className="border p-2">{mark.subject}</td>
-                                        <td className="border p-2">{mark.overallgpa}</td>
+                                        <td className="border border-black text-center p-2">{mark.semester}</td>
+                                        <td className="border border-black text-center p-2">{mark.gpa}</td>
+                                        <td className="border border-black text-center p-2">{mark.backlogs}</td>
+                                        <td className="border border-black text-center p-2">{mark.subject}</td>
+                                        <td className="border border-black text-center p-2">{mark.overallgpa}</td>
                                     </tr>
                                 ))}
                             </tbody>

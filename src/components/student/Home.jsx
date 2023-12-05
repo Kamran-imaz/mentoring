@@ -40,7 +40,7 @@ const Home = () => {
                     })
                     const { success, message } = response1.data;
                     const { success2, message2 } = response2.data;
-                    const {lateArrivals} = await response3.json();
+                    const { lateArrivals } = await response3.json();
                     if (success || success2) {
                         setUndertaking(message);
                         setConcern(message2);
@@ -60,7 +60,7 @@ const Home = () => {
                     else {
                         setUndertaking("No data found");
                     }
-                    if(lateArrivals){
+                    if (lateArrivals) {
                         setNoOfLateArrivals(lateArrivals.length);
                     }
                 } 
@@ -145,7 +145,7 @@ const Home = () => {
                                 Late Arrival
                             </Link>
                         </h2>
-                        {noOfLateArrivals !== 0 ? (
+                        {noOfLateArrivals>0 ? (
                             <span className="px-3">
                                 You have <strong className="text-red-500">{noOfLateArrivals}</strong>{" "}
                                 forms which are not approved
