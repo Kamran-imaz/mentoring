@@ -175,8 +175,8 @@ const CombineLinks = () => {
             });
             const jsonData = await response.json()
             if (response.status === 200){
-                alert("Update success")
-                window.location.reload()
+                alert("Update success");
+                window.location.reload();
             }
         } catch (err) {
             console.log(err);
@@ -317,7 +317,7 @@ const CombineLinks = () => {
                             </thead>
                             <tbody>
                                 {forms &&
-                                    forms.lateArrivals ? (
+                                    forms.lateArrivals && forms.lateArrivals.length>0 ? (
                                     forms.lateArrivals.map((lateArrival, index) => {
                                         return (
                                             <tr key={index}>
@@ -326,7 +326,7 @@ const CombineLinks = () => {
                                                 <td className="border border-black p-2 text-center">{lateArrival.semester}</td>
                                                 <td className="border border-black p-2 text-center">{lateArrival.reason}</td>
                                                 <td className="border border-black p-2 text-center">{lateArrival.file || "No file provided"}</td>
-                                                <td className={`border border-black p-2 text-center ${lateArrival.status === "pending" ? "bg-yellow-500" : "bg-green-500"}`}>
+                                                <td className={`border border-black p-2 text-center ${lateArrival.status === "pending" ? "text-yellow-500" : "text-green-500"}`}>
                                                     {
                                                         lateArrival.status
                                                     }{
