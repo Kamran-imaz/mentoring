@@ -99,7 +99,7 @@ const MentorHome = () => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="4" className="text-center">
+                                    <td colSpan="4" className="border border-black p-2 text-center">
                                         No Students Found
                                     </td>
                                 </tr>
