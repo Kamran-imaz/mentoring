@@ -176,7 +176,7 @@ function LateArrivalForm() {
                                         <td className="border border-black p-2 text-center">{arrival.semester}</td>
                                         <td className="border border-black p-2 text-center">{arrival.reason}</td>
                                         <td className={`border border-black p-2 text-center`
-                                            + (arrival.status === 'pending' ? ' bg-yellow-400' : arrival.status === 'accepted' ? ' bg-green-400' : ' bg-red-400')
+                                            + (arrival.status === 'pending' ? ' text-yellow-400' : arrival.status === 'accepted' ? ' text-green-400' : ' bg-red-400')
                                         }>{arrival.status}</td>
                                         {/* <td className="border border-black p-2">
                                 {arrival.reasonFile && (
