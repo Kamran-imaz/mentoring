@@ -91,7 +91,7 @@ function LateArrivalForm() {
     return (
         <>
             <Navbar />
-            <div className="overflow-auto mx-auto py-8 bg-gray-200">
+            <div className="overflow-auto mx-auto py-8 bg-gray-200 w-full">
                 <div className="mx-auto w-3/5 p-3">
                     <h2 className="text-2xl font-bold mb-4 text-center">Late Arrival Form</h2>
                     {error && <p className="text-red-600 mb-4">{error}</p>}
@@ -148,7 +148,7 @@ function LateArrivalForm() {
                     </button>
 
                     <h3 className="text-xl font-semibold my-4">Late Arrival History</h3>
-                    <table className="min-w-full border-2 border-black">
+                    <table className="w-full border-2 border-black">
                         <thead>
                             <tr>
                                 <th className="border border-black p-2">Date</th>

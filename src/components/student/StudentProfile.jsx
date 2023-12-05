@@ -36,7 +36,7 @@ const StudentProfile = () => {
         <>
             <Navbar />
             <div className="bg-gray-200 overflow-auto h-screen">
-                <div className="w-3/5 lg:w-2/5 overflow-auto mx-auto my-4 p-4 bg-gray-100 rounded shadow">
+                <div className="w-4/5 lg:w-2/5 overflow-auto mx-auto my-4 p-4 bg-gray-100 rounded shadow">
                     <h1 className="text-2xl font-bold mb-4">Student Profile</h1>
                     <p className="mb-2">
                         <span className="font-bold">Roll No:</span> {student.rollNo}

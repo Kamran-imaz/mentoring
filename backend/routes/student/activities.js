@@ -56,6 +56,7 @@ router.delete("/deleteLateArrival/:lateArrivalId", fetchStudent, async (req, res
         return res.status(500).json({ success, message: err.message });
     }
 });
+
 router.get("/lateArrivals", fetchStudent, async (req, res) => {
     try {
         const student = await StudentModel.Student.findById(req.student.id);
