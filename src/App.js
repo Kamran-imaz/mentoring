@@ -12,13 +12,13 @@ import MentorHome from "./components/mentor/Home";
 import CombineLinks from "./components/mentor/CombineLinks";
 import StudentProfile from "./components/student/StudentProfile"
 
-//boostrap link for carousel...
-// import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
     return (
         <>
         <Router>
             <Routes>
+                {/* Student Routes */}
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/" element={<Login/>}/>
                 <Route path='/home' element={<Home/>}/>
@@ -29,13 +29,11 @@ function App() {
                 <Route path="/profile" exact element={<StudentProfile />} />
                 <Route path="*" element={<h1>404 Not Found</h1>}/>
 
-                {/* from here mentor routes.... */}
-                
+                {/* Mentor Routes */}
                 <Route path="/mentorRegister" exact element={<MentorRegister/>}/>
                 <Route path="/mentorLogin" exact element={<MentorLogin/>}/>
                 <Route path="/mentorHome" exact element={< MentorHome/>}/>
                 <Route path="/combineLinks/:rollNo" exact element={<CombineLinks/>}/>
-                
             </Routes>
         </Router>
            
