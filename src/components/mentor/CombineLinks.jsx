@@ -7,6 +7,7 @@ const CombineLinks = () => {
     const [forms, setForms] = useState();
     let { rollNo } = useParams();
     rollNo = parseInt(rollNo);
+    
     const token = localStorage.getItem("auth-token");
     useEffect(() => {
         const fetchData = async () => {

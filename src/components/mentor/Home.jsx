@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 const MentorHome = () => {
     const [students, setStudents] = useState();
     const [rollno, setRollNo] = useState('');
-    const handleClick = (roll) => {
-        setRollNo(roll)
-    }
+   
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem("auth-token");
@@ -68,7 +66,7 @@ const MentorHome = () => {
     return (
         <>
             <MentorNavbar />
-            <div className="bg-gray-200" >
+            <div className="bg-gray-200 overflow-auto" >
                 <div className="flex flex-col w-4/5 mx-auto min-h-screen">
                     {/* Carousel */}
                     <div className="bg-gray-200 p-6 rounded-lg shadow-md mb-8">
@@ -100,8 +98,8 @@ const MentorHome = () => {
                                 students.map((student, index) => (
                                     <tr key={index}>
                                         <td className="border p-2 border-black text-center">{index + 1}</td>
-                                        <td className="border p-2 border-black text-center"><button className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded" onClick={() => handleClick(student.rollNo)}><Link to={`/combineLinks/${student.rollNo}`}>{student.rollNo}</Link></button></td>
-                                        <td className="border p-2 border-black text-center">{student.name}</td>
+                                        <td className="border p-2 border-black text-center"><button className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded" ><Link to={`/combineLinks/${student.rollNo}`}>{student.rollNo}</Link></button></td>
+                                        <td className="border p-2 border-black text-center"><button className="hover:bg-blue-800 hover:text-white transition duration-300 px-3 py-2 rounded"><Link to={`/profile/${student.rollNo}`}>{student.name}</Link></button></td>
                                         <td className="border p-2 border-black text-center text-red-500">{countPending(student)}</td>
                                     </tr>
                                 ))
