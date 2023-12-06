@@ -76,7 +76,7 @@ function UndertakingForm() {
         if (success) {
           toast.success("Letter Submitted Successfully!!!", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
@@ -89,7 +89,7 @@ function UndertakingForm() {
         } else {
           toast.error(message, {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
@@ -102,7 +102,7 @@ function UndertakingForm() {
         console.error("Error submitting form:", error);
         toast.error("Error submitting form. Please try again.", {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: false,
@@ -114,7 +114,7 @@ function UndertakingForm() {
     } else {
       toast.error("Please provide Reason and Address.", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
@@ -228,7 +228,7 @@ function UndertakingForm() {
                 ))
               ) : (
                 <tr>
-                  <td className="border p-2 text-center" colSpan="2">
+                  <td className="border p-2 text-center" colSpan="3">
                     No History Found
                   </td>
                 </tr>

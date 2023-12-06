@@ -5,8 +5,6 @@ import axios from "axios";
 
 const Home = () => {
     const navigate = useNavigate();
-    const [undertaking, setUndertaking] = useState({});
-    const [concern, setConcern] = useState({});
     const [resultConcern, setResultConcern] = useState(0);
     const [resultUndertaking, setResultUndertaking] = useState(0);
     const [noOfLateArrivals, setNoOfLateArrivals] = useState(0);
@@ -35,17 +33,19 @@ const Home = () => {
                     const { success, message } = response1.data;
                     const { success2, message2 } = response2.data;
                     if (success || success2 || response3.status===200) {
-                        setUndertaking(message);
-                        setConcern(message2);
-                        let result1 = undertaking.undertakingForm.reduce((acc, obj) => {
+                        
+                        let result1 = message.undertakingForm.reduce((acc, obj) => {
                             if (obj.approvalStatus === false) {
                                 return acc + 1;
                             }
+                            return acc
                         }, 0);
-                        let result2 = concern.addressingConcerns.reduce((acc, obj) => {
+                        console.log(result1)
+                        let result2 = message2.addressingConcerns.reduce((acc, obj) => {
                             if (obj.approvalStatus === false) {
                                 return acc + 1;
                             }
+                            return acc
                         }, 0);
                         let result3 = response3.data.lateArrivals.reduce((acc, obj) => {
                             if (obj.status === "pending") {
@@ -57,7 +57,7 @@ const Home = () => {
                         setNoOfLateArrivals(result3);
                     } 
                     else {
-                        setUndertaking("No data found");
+                        console.log("No data found");
                     }
                 } 
                 else {
@@ -68,7 +68,7 @@ const Home = () => {
             }
         };
         fetchData();
-    }, []);
+    },[]);
     return (
         <>
             <div className="bg-gray-200">

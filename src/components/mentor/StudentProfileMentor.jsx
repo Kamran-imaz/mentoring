@@ -54,11 +54,11 @@ const StudentProfileMentor = () => {
           <div className="pb-3 border border-black mx-auto w-3/4 flex flex-col items-center justify-center">
             <h3 className="text-xl font-semibold text-center pb-3">Student Profile</h3>
             <div className="">
-            <p className="pb-3"><strong>Name:</strong>{forms.name !== undefined ? forms.name : "NULL"}</p>
-            <p className="pb-3"><strong>RollNo:</strong>{forms.rollNo}</p>
-            <p className="pb-3"><strong>Branch:</strong>{forms.branch}</p>
-            <p className="pb-3"><strong>College:</strong>{forms.college}</p>
-            <p className="pb-3"><strong>CGPA:</strong>{cgpa}</p>
+            <p className="pb-3"><strong>Name     :</strong> {forms.name !== undefined ? forms.name : "NULL"}</p>
+            <p className="pb-3"><strong>RollNo :</strong> {forms.rollNo}</p>
+            <p className="pb-3"><strong>Branch :</strong> {forms.branch}</p>
+            <p className="pb-3"><strong>College:</strong> {forms.college}</p>
+            <p className="pb-3"><strong>CGPA   :</strong> {cgpa}</p>
             </div>
           </div>
         )}

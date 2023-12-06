@@ -1,12 +1,27 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Navbar = () => {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navbarRef = useRef(null);
     const logout = () => {
         localStorage.removeItem('auth-token');
+        console.log("logged out")
+        toast.success("Logged out successfully", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         navigate('/');
     }
 
@@ -24,6 +39,7 @@ const Navbar = () => {
 
     return (
         <nav ref={navbarRef} className="sticky w-full overflow-auto z-10 top-0 border border-b-black text-black bg-gray-200 p-4">
+            <ToastContainer/>
             <div className={`justify-between items-center ${isMenuOpen ? "flex flex-col items-center text-center lg:flex lg:flex-row" : "lg:flex lg:flex-row"}`}>
                 <div className={`flex flex-row items-center` + isMenuOpen ? "w-full flex flex-row justify-between items-center lg:w-fit" : ""}>
                     {/* Logo or title */}

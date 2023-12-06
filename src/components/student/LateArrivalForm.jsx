@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function LateArrivalForm() {
     const [lateDate, setLateDate] = useState(new Date().toISOString().split('T')[0]);
     const [latePeriod, setLatePeriod] = useState('');
@@ -48,7 +52,7 @@ function LateArrivalForm() {
 
     const handleSubmit = async () => {
         if (lateDate && latePeriod && lateSemester && lateReason) {
-            console.log("Yes all fields are filled")
+            // console.log("Yes all fields are filled")
             const newLateArrival = {
                 date: lateDate,
                 period: latePeriod,
@@ -56,14 +60,14 @@ function LateArrivalForm() {
                 reason: lateReason,
                 // reasonFile: reasonFile,
             };
-            console.log(newLateArrival)
+            // console.log(newLateArrival)
             setLateArrivals([...lateArrivals, newLateArrival]);
             setLateDate('');
             setLatePeriod('');
             setLateSemester('');
             setLateReason('');
             setReasonFile(null);
-            console.log("Sending")
+            // console.log("Sending")
             const response = await fetch("http://localhost:80/api/student/activities/addLateArrival",
                 {
                     method: "POST",
@@ -74,17 +78,34 @@ function LateArrivalForm() {
                     body: JSON.stringify(newLateArrival),
                 });
             const data = await response.json();
-            console.log("I am here")
-            console.log(data);
-            console.log(data.lateArrivals);
+            // console.log("I am here")
+            // console.log(data);
+            // console.log(data.lateArrivals);
             setLateArrivals(data.lateArrivals);
+            toast.success("Form Submitted Successfully!!!", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
             setError("");
         }
         else {
-            setError("Please fill all the fields");
-            setTimeout(() => {
-                setError("");
-            }, 2500);
+            toast.error("please fill all the fields!!!", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+          
         }
     };
 
@@ -178,24 +199,14 @@ function LateArrivalForm() {
                                         <td className={`border border-black p-2 text-center`
                                             + (arrival.status === 'pending' ? ' text-yellow-400' : arrival.status === 'accepted' ? ' text-green-400' : ' bg-red-400')
                                         }>{arrival.status}</td>
-                                        {/* <td className="border border-black p-2">
-                                {arrival.reasonFile && (
-                                    <a
-                                        href={URL.createObjectURL(arrival.reasonFile)}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-blue-500 hover:underline"
-                                    >
-                                        View File
-                                    </a>
-                                )}
-                            </td> */}
+                                       
                                     </tr>
                                 ))
                             }
                         </tbody>
                     </table>
                 </div>
+                <ToastContainer/>
             </div>
         </>
     );

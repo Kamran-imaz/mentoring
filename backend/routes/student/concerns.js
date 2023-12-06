@@ -8,7 +8,7 @@ router.post('/', fetchStudent, async (req, res) => {
         const id = req.student.id;
         const checkStudent = await StudentModel.Student.findById(id);
         const isDateExists=checkStudent.addressingConcerns.some((ele)=>ele.date===date)
-        console.log(!isDateExists)
+        // console.log(!isDateExists)
         if (query && query.length >= 10) {
             if (checkStudent && !isDateExists) {
                 let maxCounter = 0;
@@ -34,26 +34,26 @@ router.post('/', fetchStudent, async (req, res) => {
                 await checkStudent.save();
 
                 return res.json({
-                    success: true,
-                    message: "Your query has been saved!!!"
+                    success2: true,
+                    message2: "Your query has been saved!!!"
                 });
             } else {
                 return res.json({
-                    success: false,
-                    message: "Only one form can be submitted on one day!!!"
+                    success2: false,
+                    message2: "Only one form can be submitted on one day!!!"
                 });
             }
         } else {
             return res.json({
-                success: false,
-                message: "Your query is too short"
+                success2: false,
+                message2: "Your query is too short"
             });
         }
     } catch (err) {
         console.error(err);
         return res.status(500).json({
-            success: false,
-            message: "An error occurred"
+            success2: false,
+            message2: "An error occurred"
         });
     }
 });

@@ -61,10 +61,11 @@ const Concerns = () => {
                 }
             })
             const {success2,message2}=response.data
+            // console.log(success2)
             if(success2){
-                toast.success2("Query Submitted success2fully!!!", {
+                toast.success("Query Submitted successfully!!!", {
                     position: "top-center",
-                    autoClose: 3000,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
@@ -77,7 +78,7 @@ const Concerns = () => {
             else{
                 toast.error(message2, {
                     position: "top-center",
-                    autoClose: 5000,
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
@@ -93,7 +94,7 @@ const Concerns = () => {
         else{
             toast.error('Please fill the Query', {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
