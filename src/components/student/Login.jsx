@@ -107,7 +107,7 @@ function Login() {
                 <br />
                 <p className="w-fit mx-auto my-2">
                     Are you Mentor?
-                    <Link className="bg-black text-white ml-2 p-2 rounded-l-lg hover:bg-blue-800 mx-2" to="/mentorRegister">Register</Link>
+                    <Link className="bg-black text-white p-2 ml-2 rounded-l-lg hover:bg-blue-800" to="/mentorRegister">Register</Link>
                     <Link className="bg-black text-white p-2 rounded-r-lg hover:bg-blue-800" to="/mentorLogin">Login</Link>
                 </p>
             </div>
