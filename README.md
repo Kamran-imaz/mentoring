@@ -9,7 +9,6 @@ Welcome to the Mentoring project! This project aims to facilitate mentoring rela
   - [Prerequisites](#prerequities)
   - [Installation](#installation)
 - [Environment Variables](#environment-variables)
-- [API Reference](#api-reference)
 - [Authors](#authors)
 ## Features
 - **Mentor-Mentee Matching:** Connect with mentors or mentees based on shared interests and goals.
@@ -48,31 +47,7 @@ To run this project, you will need to add the following environment variables to
 `DATABASE_URL`
 
 
-## API Reference
 
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
 
 
 ## Authors
