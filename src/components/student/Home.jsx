@@ -31,17 +31,10 @@ const Home = () => {
                             },
                         }
                     );
-                    const response3 = await fetch("http://localhost:80/api/student/activities/lateArrivals",{
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "auth-token": token,
-                        },
-                    })
+                    const response3 = await axios.get("http://localhost:80/api/student/activities/lateArrivals",{headers:{"auth-token":token}});
                     const { success, message } = response1.data;
                     const { success2, message2 } = response2.data;
-                    const {lateArrivals} = await response3.json();
-                    if (success || success2) {
+                    if (success || success2 || response3.status===200) {
                         setUndertaking(message);
                         setConcern(message2);
                         let result1 = undertaking.undertakingForm.reduce((acc, obj) => {
@@ -54,14 +47,17 @@ const Home = () => {
                                 return acc + 1;
                             }
                         }, 0);
+                        let result3 = response3.data.lateArrivals.reduce((acc, obj) => {
+                            if (obj.status === "pending") {
+                                return acc + 1;
+                            }
+                        }, 0);
                         setResultUndertaking(result1);
                         setResultConcern(result2);
+                        setNoOfLateArrivals(result3);
                     } 
                     else {
                         setUndertaking("No data found");
-                    }
-                    if(lateArrivals){
-                        setNoOfLateArrivals(lateArrivals.length);
                     }
                 } 
                 else {
@@ -145,7 +141,7 @@ const Home = () => {
                                 Late Arrival
                             </Link>
                         </h2>
-                        {noOfLateArrivals !== 0 ? (
+                        {noOfLateArrivals>0 ? (
                             <span className="px-3">
                                 You have <strong className="text-red-500">{noOfLateArrivals}</strong>{" "}
                                 forms which are not approved

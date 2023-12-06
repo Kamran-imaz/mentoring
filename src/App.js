@@ -11,8 +11,8 @@ import MentorLogin from "./components/mentor/Login";
 import MentorHome from "./components/mentor/Home";
 import CombineLinks from "./components/mentor/CombineLinks";
 import StudentProfileMentor from "./components/mentor/StudentProfileMentor"
-import StudentProfile from "./components/student/StudentProfile";
-
+import MentorProfile from "./components/mentor/MentorProfile";
+import StudentProfile from './components/student/StudentProfile'
 
 function App() {
     return (
@@ -34,6 +34,7 @@ function App() {
                 <Route path="/mentorRegister" exact element={<MentorRegister/>}/>
                 <Route path="/mentorLogin" exact element={<MentorLogin/>}/>
                 <Route path="/mentorHome" exact element={< MentorHome/>}/>
+                <Route path="/mentorProfile" exact element={ <MentorProfile /> } />
                 <Route path="/combineLinks/:rollNo" exact element={<CombineLinks/>}/>
                 <Route path="/profile/:rollNo" exact element={<StudentProfileMentor/>}/>
             </Routes>
