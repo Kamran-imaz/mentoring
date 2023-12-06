@@ -4,6 +4,7 @@
 Welcome to the Mentoring project! This project aims to facilitate mentoring relationships, providing a platform for mentors and mentees to connect and collaborate.
 ## Table of Contents
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequities)
   - [Installation](#installation)
@@ -14,6 +15,9 @@ Welcome to the Mentoring project! This project aims to facilitate mentoring rela
 - **Mentor-Mentee Matching:** Connect with mentors or mentees based on shared interests and goals.
 - **Progress Tracking:** Track the progress of mentoring relationships and set goals.
 - **Responsive Design:** Device friendly user interactive website
+
+## Screenshots
+
 ## Getting Started
 ### Prerequities
 - **Node.js:** Make sure you have Node.js installed on your system. You can download it from the official website: [Node.js](https://nodejs.org/)
