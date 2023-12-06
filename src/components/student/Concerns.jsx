@@ -139,7 +139,7 @@ const Concerns = () => {
   return (
     <>
       <Navbar/>
-      <div className=" mx-auto py-8 bg-gray-200">
+      <div className=" mx-auto py-8 bg-gray-200 min-h-full">
         <div className="p-4 w-3/5 mx-auto" id="pdf-content">
           <h2 className="text-2xl font-bold mb-4 text-center">Addressing Concerns</h2>
           <div className="mb-4">
