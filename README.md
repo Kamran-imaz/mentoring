@@ -4,7 +4,7 @@
 Welcome to the Mentoring project! This project aims to facilitate mentoring relationships, providing a platform for mentors and mentees to connect and collaborate.
 ## Table of Contents
 - [Features](#features)
-- [Screenshots](#screenshots)
+- [Screenshots](#screenshotsvideo)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequities)
   - [Installation](#installation)
@@ -15,7 +15,7 @@ Welcome to the Mentoring project! This project aims to facilitate mentoring rela
 - **Progress Tracking:** Track the progress of mentoring relationships and set goals.
 - **Responsive Design:** Device friendly user interactive website
 
-## Screenshots
+## Screenshots/Video
 
 ## Getting Started
 ### Prerequities
