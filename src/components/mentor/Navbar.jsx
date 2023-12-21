@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 const MentorNavbar = () => {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [mentor, setMentor] = useState({});
     const navbarRef = useRef(null);
+    const token = localStorage.getItem("auth-token");
     const logout = () => {
         localStorage.removeItem('auth-token');
         navigate('/mentorLogin');
     }
 
-    useEffect(() => { // Close the menu when clicked outside
+    useEffect(() => {
         const handleOutsideClick = (event) => {
             if (navbarRef.current && !navbarRef.current.contains(event.target)) {
                 setIsMenuOpen(false);
@@ -21,6 +23,32 @@ const MentorNavbar = () => {
             document.removeEventListener("click", handleOutsideClick);
         };
     }, []);
+
+    useEffect(()=>{
+        const fetchMentorData = async () => {
+            const token = localStorage.getItem("auth-token");
+            if (token) {
+                try {
+                    const response = await fetch("http://localhost:80/api/mentor/auth/getMentorDetails",
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "auth-token": token,
+                            },
+                        })
+                    const jsonData = await response.json();
+                    setMentor(jsonData.mentor)
+                }
+                catch (e) {
+                    alert("Error fetching Mentor data ", e);
+                }
+            } else {
+                console.log("no token available");
+            }
+        };
+        fetchMentorData();
+    }, [])
 
     return (
         <nav ref={navbarRef} className="sticky w-full overflow-auto z-10 top-0 border border-b-black text-black bg-gray-200 p-4" >
@@ -88,6 +116,7 @@ const MentorNavbar = () => {
                 </div>
                 <div className={`lg:flex lg:w-fit items-center justify-center ${isMenuOpen ? "block" : "hidden"}`}>
                     {/* Logout button */}
+                    <p className="m-2">Welcome, {mentor.name}</p>
                     <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-blue-800 hover:text-white transition duration-300" onClick={logout}>
                         Logout
                     </button>

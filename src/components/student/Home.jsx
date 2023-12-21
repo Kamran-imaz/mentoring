@@ -96,7 +96,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="bg-gray-200">
+            <div className="bg-gray-200 h-screen overflow-auto">
                 {/* Navigation */}
                 <Navbar />
                 <div className="flex flex-col w-4/5 mx-auto">

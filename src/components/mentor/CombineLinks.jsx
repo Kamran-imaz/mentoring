@@ -343,7 +343,7 @@ const CombineLinks = () => {
                                     <tr>
                                         <td
                                             className="border border-black p-2 text-center"
-                                            colSpan="5"
+                                            colSpan="6"
                                         >
                                             No History Found
                                         </td>

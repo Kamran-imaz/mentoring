@@ -154,11 +154,11 @@ function LateArrivalForm() {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block mb-2">Reason File:</label>
+                        <label className="block mb-2">Reason File (pdf):</label>
                         <input
                             type="file"
                             onChange={handleFileChange}
-                            className="border rounded p-2 w-full"
+                            className="border rounded w-full"
                         />
                     </div>
                     <button

@@ -138,8 +138,10 @@ const Concerns = () => {
 
   return (
     <>
+    <div className='overflow-auto bg-slate-200'>
+      
       <Navbar/>
-      <div className=" mx-auto py-8 bg-gray-200 min-h-full">
+      <div className="mx-auto py-8 bg-gray-200 h-screen overflow-auto">
         <div className="p-4 w-3/5 mx-auto" id="pdf-content">
           <h2 className="text-2xl font-bold mb-4 text-center">Addressing Concerns</h2>
           <div className="mb-4">
@@ -195,7 +197,7 @@ const Concerns = () => {
                 ))
               ) : (
                 <tr>
-                  <td className="border p-2 text-center" colSpan="2">
+                  <td className="border p-2 text-center" colSpan="3">
                     No History Found
                   </td>
                 </tr>
@@ -205,6 +207,7 @@ const Concerns = () => {
         </div>
       </div>
       <ToastContainer/>
+      </div>
     </>
   )
 }

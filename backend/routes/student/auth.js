@@ -46,66 +46,67 @@ router.post("/signup", [
     })
 
 router.post("/login", async (req, res) => {
-        let success = false
-        const { rollNo, password } = req.body
-        try {
-            let student = await StudentModel.Student.findOne({ rollNo })
-            if (!student) {
-                return res.status(400).json({ success, message: "Incorrect Credentials" })
-            }
-            const comparePass = bcrypt.compareSync(password, student.password)
-            if (!comparePass) {
-                return res.status(400).json({ success, message: "Incorrect Credentials" })
-            }
-            const data = {
-                studentID: {
-                    id: student.id
-                }
-            }
-            const authToken = jwt.sign(data, JWT_Secret)
-            success = true
-            return res.status(200).json({ success, authToken })
+    let success = false
+    const { rollNo, password } = req.body
+    try {
+        let student = await StudentModel.Student.findOne({ rollNo })
+        if (!student) {
+            return res.status(400).json({ success, message: "Incorrect Credentials" })
         }
-        catch (err) {
-            return res.status(500).json({ success, message: err.message })
+        const comparePass = bcrypt.compareSync(password, student.password)
+        if (!comparePass) {
+            return res.status(400).json({ success, message: "Incorrect Credentials" })
         }
-    })
-    
+        const data = {
+            studentID: {
+                id: student.id
+            }
+        }
+        const authToken = jwt.sign(data, JWT_Secret)
+        success = true
+        return res.status(200).json({ success, authToken })
+    }
+    catch (err) {
+        return res.status(500).json({ success, message: err.message })
+    }
+})
+
 router.get("/getStudentDetails", fetchStudent, async (req, res) => {
-        let success = false
-        try {
-            let id = req.student.id;
-            const student = await StudentModel.Student.findById(id).select("-password -__v -_id");
-            if (student == null) {
-                return res.status(400).json({ success, message: "Student Not Found" })
-            }
-            success = true;
-            return res.status(200).json({ success, student })
+    let success = false
+    try {
+        let id = req.student.id;
+        const student = await StudentModel.Student.findById(id).select("-password -__v -_id");
+        if (student == null) {
+            return res.status(400).json({ success, message: "Student Not Found" })
         }
-        catch (err) {
-            return res.status(500).json({ success, message: err.message })
-        }
-    })
-    router.get('/getStudents', async (req, res) => {
-        try {
-            const students = await StudentModel.Student.find({});
-            if (students.length > 0) {
-                return res.status(200).json({
-                    success: true,
-                    message: students
-                });
-            } else {
-                return res.status(404).json({
-                    success: false,
-                    message: "No students found in the database"
-                });
-            }
-        } catch (err) {
-            console.error(err);
-            return res.status(500).json({
+        success = true;
+        return res.status(200).json({ success, student })
+    }
+    catch (err) {
+        return res.status(500).json({ success, message: err.message })
+    }
+})
+
+router.get('/getStudents', async (req, res) => {
+    try {
+        const students = await StudentModel.Student.find({});
+        if (students.length > 0) {
+            return res.status(200).json({
+                success: true,
+                message: students
+            });
+        } else {
+            return res.status(404).json({
                 success: false,
-                message: "Internal Server Error. Failed to fetch students."
+                message: "No students found in the database"
             });
         }
-    });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error. Failed to fetch students."
+        });
+    }
+});
 module.exports = router

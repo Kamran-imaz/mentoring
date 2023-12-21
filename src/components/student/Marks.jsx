@@ -86,7 +86,7 @@ const SemesterDetails = () => {
   return (
     <>
       <Navbar />
-      <div className="mx-auto py-8 bg-gray-200">
+      <div className="mx-auto py-8 bg-gray-200 overflow-auto h-screen">
         <div className="max-w-3xl mx-auto mt-8 p-8 border rounded-lg">
         <h2 className="text-2xl font-bold mb-4 text-center">Marks Form</h2>
           <div className="mb-4">
