@@ -97,7 +97,7 @@ function Login() {
                             Register as Student?
                             <Link
                                 className="bg-black text-white p-2 ml-2 rounded hover:bg-blue-800"
-                                to="/register"
+                                to="/studentRegister"
                             >
                                 Register
                             </Link>

@@ -106,7 +106,7 @@ function Register() {
                         </button>
                         <span>
                             Already Registered?
-                            <Link className="bg-black text-white p-2 ml-2 rounded hover:bg-blue-800" to="/">Login</Link>
+                            <Link className="bg-black text-white p-2 ml-2 rounded hover:bg-blue-800" to="/studentLogin">Login</Link>
                         </span>
                     </div>
                 </form>

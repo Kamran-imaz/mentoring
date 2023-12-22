@@ -13,6 +13,8 @@ import CombineLinks from "./components/mentor/CombineLinks";
 import StudentProfileMentor from "./components/mentor/StudentProfileMentor"
 import MentorProfile from "./components/mentor/MentorProfile";
 import StudentProfile from './components/student/StudentProfile'
+import HomeLoginPage from "./components/HomeLoginPage";
+import AdminLogin from "./components/admin/Login";
 
 function App() {
     return (
@@ -20,8 +22,9 @@ function App() {
         <Router>
             <Routes>
                 {/* Student Routes */}
-                <Route path="/register" element={<Register/>}/>
-                <Route path="/" element={<Login/>}/>
+                <Route path="/" element={<HomeLoginPage/>}/>
+                <Route path="/studentLogin" element={<Login/>}/>
+                <Route path="/studentRegister" element={<Register/>}/>
                 <Route path='/home' element={<Home/>}/>
                 <Route path="/undertakingForm" exact element={ <UndertakingForm/>}/>
                 <Route path="/marks" exact element={<Marks/>}/>
@@ -37,6 +40,9 @@ function App() {
                 <Route path="/mentorProfile" exact element={ <MentorProfile /> } />
                 <Route path="/combineLinks/:rollNo" exact element={<CombineLinks/>}/>
                 <Route path="/profile/:rollNo" exact element={<StudentProfileMentor/>}/>
+
+                {/* Admin Routes */}
+                <Route path="/adminLogin" exact element={<AdminLogin/>}/>
             </Routes>
         </Router>
            
